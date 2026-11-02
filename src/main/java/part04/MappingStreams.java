@@ -1,6 +1,7 @@
 package part04;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -31,7 +32,7 @@ public class MappingStreams {
      */
     public IntStream doubleValuesInStream(IntStream numbers) {
         // hint: use the map() method to double the values in the stream.
-        return null; // TODO
+        return numbers.map(x -> x * 2);
     }
 
     /**
@@ -44,7 +45,7 @@ public class MappingStreams {
      */
     public IntStream multiplyValuesInStream(IntStream numbers, int multiplier) {
         // hint: use the map() method to multiply the values in the stream.
-        return null; // TODO
+        return numbers.map(x -> x * multiplier);
     }
 
     /**
@@ -76,7 +77,7 @@ public class MappingStreams {
      */
     public Stream<String> prefixAllStrings(Stream<String> strings, String prefix) {
         // hint: once again, use the map() method to add the prefix
-        return null; // TODO
+        return strings.map(x -> prefix + x);
     }
 
     /**
@@ -92,7 +93,7 @@ public class MappingStreams {
      * @return a stream of strings with the suffix added
      */
     public Stream<String> suffixAllStrings(Stream<String> strings, String suffix) {
-        return null; // TODO
+        return strings.map(x -> x + suffix);
     }
 
     /**
@@ -113,7 +114,13 @@ public class MappingStreams {
          * hint: If your expression is too complex, you can define a separate method
          * that you call from the lambda expression.
          */
-        return null; // TODO
+        Function<String, String> remove = x -> {
+            if (!x.endsWith(suffix)) {
+                return x;
+            }
+            return x.substring(0, x.length() - suffix.length());
+        };
+        return strings.map(remove); // TODO
     }
 
     /**
@@ -135,8 +142,19 @@ public class MappingStreams {
          * - if the number is divisible by 5, the string is "Buzz"
          * - otherwise, the string is the number as a string
          */
+        return numbers.mapToObj(number -> {
+            if (number % 3 == 0 && number % 5 == 0) {
+                return "fizzbuzz";
+            } else if (number % 3 == 0) {
+                return "fizz";
+            } else if (number % 5 == 0) {
+                return "buzz";
+            } else {
+                return String.valueOf(number);
+            }
+        });
 
         // hint: see the mapToObj() method in IntStream
-        return null; // TODO
+
     }
 }
