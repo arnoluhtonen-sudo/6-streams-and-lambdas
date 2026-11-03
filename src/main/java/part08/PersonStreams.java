@@ -55,6 +55,11 @@ public class PersonStreams {
      * @return a stream of Person objects
      */
     public Stream<Person> csvToPersons(Stream<String> csvLines) {
-        return null; // TODO
+        //return Stream.of(new Person("Ada", 10), new Person("Bob", 20), new Person("Carol", 30)); // TODO
+
+        return csvLines.map(line -> {
+            String[] cvsParts = line.split(",");
+            return new Person(cvsParts[0], Integer.parseInt(cvsParts[1]));
+        });
     }
 }
