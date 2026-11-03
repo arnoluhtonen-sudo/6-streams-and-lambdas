@@ -24,4 +24,9 @@ import java.util.List;
  */
 public record Pizza(String name, double price, List<String> toppings) {
 
+    public Object contains(String string) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'contains'");
+    }
+
 }

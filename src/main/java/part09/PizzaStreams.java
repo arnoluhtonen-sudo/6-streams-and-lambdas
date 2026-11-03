@@ -21,6 +21,8 @@ public class PizzaStreams {
      * @param pizzas a stream of pizzas
      * @return a stream of pizzas that have "pineapple" as a topping
      */
+    //https://www.geeksforgeeks.org/java/stream-filter-java-examples/
+    //list.stream().filter(num -> num % 5 == 0).forEach(System.out::println);
     public Stream<Pizza> getPizzasWithPineapple(Stream<Pizza> pizzas) {
         /*
          * You must use the filter() method of the Stream to select the pizzas that have
@@ -29,7 +31,7 @@ public class PizzaStreams {
          * You can use the toppings() method of a Pizza to get the toppings as a
          * list of strings.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(pizza -> pizza.toppings().contains("pineapple"));
     }
 
     /**
@@ -38,12 +40,14 @@ public class PizzaStreams {
      * @param pizzas a stream of pizzas
      * @return a stream of pizzas that do not have "pineapple" as a topping
      */
+    //https://stackoverflow.com/questions/35512258/java-8-stream-all-elements-except-other-elements
+    // filter(i -> !evens.contains(i)
     public Stream<Pizza> getPizzasWithoutPineapple(Stream<Pizza> pizzas) {
         /*
          * Like the previous method, but this time you must select the pizzas
          * that do not have "pineapple" as a topping.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(pizza -> !pizza.toppings().contains("pineapple"));
     }
 
     /**
@@ -60,7 +64,7 @@ public class PizzaStreams {
          * that have the given topping. You can assume that toppings are
          * always in lower case.
          */
-        return null; // TODO: implement this method
+        return pizzas.filter(pizza -> pizza.toppings().contains(topping));
     }
 
     /**
@@ -71,6 +75,7 @@ public class PizzaStreams {
      * @param toppings the toppings to look for
      * @return a stream of pizzas that have any of the given toppings
      */
+
     public Stream<Pizza> getPizzasWithAnyOfToppings(Stream<Pizza> pizzas, List<String> toppings) {
         /*
          * Like the previous method, but this time you must select the pizzas
@@ -81,8 +86,9 @@ public class PizzaStreams {
          * of the given toppings and then use that method here. You are also allowed to
          * add new methods in the Pizza class.
          */
-        return null; // TODO: implement this method
+        return pizzas;
     }
+
 
     /**
      * Returns a stream of pizzas that is sorted by price in ascending order
@@ -100,7 +106,7 @@ public class PizzaStreams {
          * https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream
          * /Stream.html#sorted(java.util.Comparator)
          */
-        return null; // TODO: implement this method
+        return pizzas.sorted(); // TODO: implement this method
     }
 
     /**
@@ -118,6 +124,6 @@ public class PizzaStreams {
          * compareToIgnoreCase() method of the String class to compare the names of the
          * pizzas.
          */
-        return null; // TODO: implement this method
+        return pizzas.sorted(); // TODO: implement this method
     }
 }

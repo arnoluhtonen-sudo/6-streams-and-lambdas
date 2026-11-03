@@ -19,8 +19,8 @@ public class PredicatesWithStreams {
      * @return true if all the numbers in the stream are over zero
      */
     public boolean allPositive(IntStream numbers) {
-        // hint: see the `allMatch()` method
-        return false; // TODO
+       
+        return numbers.allMatch(x -> x > 0);
     }
 
     /**
@@ -31,11 +31,11 @@ public class PredicatesWithStreams {
      * @param numbers the stream of numbers to check
      * @return the first positive number in the stream or 0 if there are no positive
      */
+    // https://stackoverflow.com/questions/37485166/understanding-optionals-orelse
     public int getFirstPositive(IntStream numbers) {
-        /*
-         * hint: you can chain the `filter()`, `findFirst()` and `isPresent()` methods.
-         */
-        return -1; // TODO
+        
+        return numbers.filter(x -> x > 0).findFirst().orElse(0);
+         // hint: you can chain the `filter()`, `findFirst()` and `isPresent()` methods.
     }
 
     /**
@@ -46,6 +46,6 @@ public class PredicatesWithStreams {
      */
     public boolean containsNoNulls(Stream<String> strings) {
         // hint: see the `noneMatch()` method
-        return false; // TODO
+        return strings.noneMatch(x -> (x == null)); // TODO
     }
 }
