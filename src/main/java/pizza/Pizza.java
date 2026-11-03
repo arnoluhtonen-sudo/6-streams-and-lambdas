@@ -23,6 +23,13 @@ import java.util.List;
  * See more at https://dev.java/learn/records/
  */
 public record Pizza(String name, double price, List<String> toppings) {
+    
+    // public boolean hasToppings(){
+    //     return !toppings.isEmpty();
+    // }
+    public boolean hasAnyTopping(List<String> checkToppings) {
+        return toppings.stream().anyMatch(checkToppings::contains);
+    }
 
     public Object contains(String string) {
         // TODO Auto-generated method stub

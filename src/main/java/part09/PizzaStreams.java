@@ -1,5 +1,6 @@
 package part09;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -21,8 +22,8 @@ public class PizzaStreams {
      * @param pizzas a stream of pizzas
      * @return a stream of pizzas that have "pineapple" as a topping
      */
-    //https://www.geeksforgeeks.org/java/stream-filter-java-examples/
-    //list.stream().filter(num -> num % 5 == 0).forEach(System.out::println);
+    // https://www.geeksforgeeks.org/java/stream-filter-java-examples/
+    // list.stream().filter(num -> num % 5 == 0).forEach(System.out::println);
     public Stream<Pizza> getPizzasWithPineapple(Stream<Pizza> pizzas) {
         /*
          * You must use the filter() method of the Stream to select the pizzas that have
@@ -40,7 +41,7 @@ public class PizzaStreams {
      * @param pizzas a stream of pizzas
      * @return a stream of pizzas that do not have "pineapple" as a topping
      */
-    //https://stackoverflow.com/questions/35512258/java-8-stream-all-elements-except-other-elements
+    // https://stackoverflow.com/questions/35512258/java-8-stream-all-elements-except-other-elements
     // filter(i -> !evens.contains(i)
     public Stream<Pizza> getPizzasWithoutPineapple(Stream<Pizza> pizzas) {
         /*
@@ -86,9 +87,9 @@ public class PizzaStreams {
          * of the given toppings and then use that method here. You are also allowed to
          * add new methods in the Pizza class.
          */
-        return pizzas;
-    }
 
+        return pizzas.filter(pizza -> pizza.hasAnyTopping(toppings));
+    }
 
     /**
      * Returns a stream of pizzas that is sorted by price in ascending order
@@ -106,7 +107,7 @@ public class PizzaStreams {
          * https://docs.oracle.com/en/java/javase/16/docs/api/java.base/java/util/stream
          * /Stream.html#sorted(java.util.Comparator)
          */
-        return pizzas.sorted(); // TODO: implement this method
+        return pizzas.sorted(Comparator.comparingDouble(Pizza::price)); // TODO: implement this method
     }
 
     /**
@@ -124,6 +125,7 @@ public class PizzaStreams {
          * compareToIgnoreCase() method of the String class to compare the names of the
          * pizzas.
          */
-        return pizzas.sorted(); // TODO: implement this method
+        return pizzas
+                .sorted(Comparator.comparing(Pizza::name, String::compareToIgnoreCase));
     }
 }
